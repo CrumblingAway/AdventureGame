@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://esfmhkb2156a"]
+
+[ext_resource type="PackedScene" uid="uid://ct6tpknjxvxpt" path="res://objects/test_grid.tscn" id="1_wyksx"]
+[ext_resource type="PackedScene" uid="uid://dn4kxyo081iav" path="res://objects/player.tscn" id="2_g0lfy"]
+
+[node name="test_level" type="Node2D"]
+
+[node name="test_grid" parent="." instance=ExtResource("1_wyksx")]
+position = Vector2(576, 320)
+
+[node name="player" parent="." instance=ExtResource("2_g0lfy")]
+position = Vector2(608, 352)
+
+[node name="GridMovement2D" parent="player" index="0" node_paths=PackedStringArray("_grid")]
+_grid = NodePath("../../test_grid")
+
+[editable path="player"]
