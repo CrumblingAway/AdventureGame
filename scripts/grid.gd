@@ -1,6 +1,16 @@
 class_name Grid extends Node2D
 
+########## Signals. ##########
+
+signal transition_to(level: Level)
+
+########## Fields. ##########
+
 @onready var _tile_map : TileMap = $TileMap
+
+@export var _level_mapping : Dictionary
+@export var _start_tile : Vector2i
+@export var _finish_tile : Vector2i
 
 ########## Node methods. ##########
 
@@ -17,3 +27,10 @@ func is_cell_available_for(mover: GridMovement2D) -> bool:
 
 func get_floor_tile_size() -> int:
 	return _tile_map.tile_set.tile_size.x
+
+func get_start_tile() -> Vector2i:
+	return _start_tile
+
+func activate_cell(cell_position: Vector2i) -> void:
+	if _level_mapping.has(cell_position):
+		transition_to.emit(_level_mapping[cell_position])
