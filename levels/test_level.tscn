@@ -1,29 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://esfmhkb2156a"]
+[gd_scene load_steps=4 format=3 uid="uid://esfmhkb2156a"]
 
 [ext_resource type="Script" path="res://scripts/test_level.gd" id="1_m8bkp"]
 [ext_resource type="PackedScene" uid="uid://ct6tpknjxvxpt" path="res://objects/test_grid.tscn" id="1_wyksx"]
-[ext_resource type="PackedScene" uid="uid://dn4kxyo081iav" path="res://objects/player.tscn" id="2_g0lfy"]
 [ext_resource type="PackedScene" uid="uid://btthsl2w5bpu3" path="res://levels/test_sublevel_1.tscn" id="2_j3h8x"]
 
 [node name="test_level" type="Node2D" node_paths=PackedStringArray("_grid")]
 script = ExtResource("1_m8bkp")
 _grid = NodePath("test_grid")
+_start_tile = Vector2i(9, 5)
+_finish_tile = Vector2i(11, 5)
 
 [node name="test_grid" parent="." instance=ExtResource("1_wyksx")]
-position = Vector2(576, 320)
 _level_mapping = {
 Vector2i(1, 0): ExtResource("2_j3h8x")
 }
-_finish_tile = Vector2i(2, 0)
 
 [node name="TileMap" parent="test_grid" index="0"]
-layer_0/tile_data = PackedInt32Array(0, 0, 0, 1, 65536, 0, 2, 131072, 0)
-
-[node name="player" parent="." instance=ExtResource("2_g0lfy")]
-position = Vector2(608, 352)
-
-[node name="GridMovement2D" parent="player" index="0" node_paths=PackedStringArray("_grid")]
-_grid = NodePath("../../test_grid")
+layer_0/tile_data = PackedInt32Array(327689, 0, 0, 327690, 65536, 0, 327691, 131072, 0)
 
 [editable path="test_grid"]
-[editable path="player"]

@@ -16,3 +16,6 @@ func _process(delta: float) -> void:
 func move(direction: Vector2i) -> void:
 	if _grid.is_cell_available_for(self):
 		_mover.global_position += Vector2(direction * _grid.get_floor_tile_size())
+
+func set_grid(grid: Grid) -> void:
+	_grid = grid

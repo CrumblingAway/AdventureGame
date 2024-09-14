@@ -18,3 +18,8 @@ func _process(delta: float) -> void:
 	elif Input.is_action_just_pressed("move_right"):
 		direction = Vector2i.RIGHT
 	_grid_movement_2d.move(direction)
+
+########## Player methods. ##########
+
+func attach_to_grid(grid: Grid) -> void:
+	_grid_movement_2d.set_grid(grid)

@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Adventure Game"
-run/main_scene="res://levels/test_level.tscn"
+run/main_scene="res://levels/main_level.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
+LevelManager="*res://scripts/level_manager.gd"
 
 [input]
 

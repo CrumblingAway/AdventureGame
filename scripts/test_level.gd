@@ -1,13 +1,18 @@
 extends Level
 
-@onready var _player : Player = $player
-var sublevel = preload("res://levels/test_sublevel_1.tscn").instantiate()
-
 func _ready():
-	Global.set_player(_player)
-	get_tree().root.add_child.call_deferred(sublevel)
-	Global.get_player().reparent(sublevel)
-	Global.get_player().position = Vector2(32, 32)
+	super._ready()
 
 func _process(delta: float) -> void:
-	pass
+	if _player:
+		_last_player_location = _player.global_position
+
+func enter() -> void:
+	_player = Global.get_player()
+	if _player.get_parent():
+		_player.reparent(self, false)
+	else:
+		add_child(_player)
+	
+	_player.global_position = _last_player_location
+	_player.attach_to_grid(_grid)
