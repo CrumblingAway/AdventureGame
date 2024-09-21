@@ -6,6 +6,7 @@
 [node name="test_sublevel_1" type="Node2D" node_paths=PackedStringArray("_grid")]
 script = ExtResource("1_akljt")
 _grid = NodePath("test_grid")
+_finish_tile = Vector2i(3, 3)
 
 [node name="test_grid" parent="." instance=ExtResource("1_286pd")]
 

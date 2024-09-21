@@ -1,11 +1,18 @@
 extends Level
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	super._ready()
 
+func _process(delta: float) -> void:
+	if _player:
+		_last_player_location = _player.global_position
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func enter() -> void:
+	_player = Global.get_player()
+	if _player.get_parent():
+		_player.reparent(self, false)
+	else:
+		add_child(_player)
+	
+	_player.global_position = _last_player_location
+	_player.attach_to_grid(_grid)

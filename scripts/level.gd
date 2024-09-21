@@ -10,6 +10,7 @@ var _last_player_location : Vector2
 ########## Node methods. ##########
 
 func _ready() -> void:
+	_grid.transition_to.connect(LevelManager.transition_to_sublevel)
 	_last_player_location = _grid._tile_map.map_to_local(_start_tile)
 
 func _process(delta: float) -> void:
@@ -31,3 +32,6 @@ func get_start_tile() -> Vector2i:
 
 func get_finish_tile() -> Vector2i:
 	return _finish_tile
+
+func activate_sublevel_at(position: Vector2) -> void:
+	_grid.activate_cell(position)
