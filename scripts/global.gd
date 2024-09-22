@@ -3,11 +3,13 @@ extends Node
 var _player : Player
 
 func _ready():
-	_player = preload("res://objects/Player.tscn").instantiate()
-	InputManager.set_player(_player)
+	pass
 
 func _process(delta):
 	pass
 
 func get_player() -> Player:
 	return _player
+
+func set_player(player: Player) -> void:
+	_player = player

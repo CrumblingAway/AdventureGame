@@ -10,7 +10,7 @@ var _last_player_location : Vector2
 ########## Node methods. ##########
 
 func _ready() -> void:
-	_grid.transition_to.connect(LevelManager.transition_to_sublevel)
+	_grid.drop_to_sublevel.connect(LevelManager.drop_to_sublevel)
 	_last_player_location = _grid._tile_map.map_to_local(_start_tile)
 
 func _process(delta: float) -> void:

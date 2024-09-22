@@ -2,7 +2,7 @@ class_name Grid extends Node2D
 
 ########## Signals. ##########
 
-signal transition_to(level: Level)
+signal drop_to_sublevel(sublevel: Level)
 
 ########## Fields. ##########
 
@@ -31,4 +31,4 @@ func get_floor_tile_size() -> int:
 func activate_cell(cell_position: Vector2) -> void:
 	var tilemap_position : Vector2i = _tile_map.local_to_map(cell_position)
 	if _level_mapping.has(tilemap_position):
-		transition_to.emit(_level_mapping[tilemap_position])
+		drop_to_sublevel.emit(_level_mapping[tilemap_position])
