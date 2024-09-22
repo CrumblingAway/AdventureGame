@@ -5,7 +5,7 @@ class_name Player extends Node2D
 ########## Node methods. ##########
 
 func _ready() -> void:
-	pass
+	print("ballsack")
 
 func _process(delta: float) -> void:
 	pass
