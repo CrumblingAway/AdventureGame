@@ -15,7 +15,10 @@ func first_transition_to_level(level: Level) -> void:
 
 ## Transition from level to level.
 func transition_to_level(level: Level) -> void:
-	assert(_was_first_transition_called, "transition_to_level called before first_transition_to_level")
+	assert(
+		_was_first_transition_called,
+		"transition_to_level called before first_transition_to_level."
+	)
 	
 	if _level_stack.is_on_main_level():
 		var popped_level : Level = _level_stack.pop()
@@ -28,6 +31,11 @@ func transition_to_level(level: Level) -> void:
 
 ## Transition from level/sublevel to sublevel.
 func drop_to_sublevel(sublevel: Level) -> void:
+	assert(
+		_level_stack.is_on_main_level() or _level_stack.is_on_sublevel(),
+		"drop_to_sublevel called without active level/sublevel."
+	)
+	
 	_level_stack.tail().visible = false
 	_level_stack.tail().exit()
 	
@@ -37,6 +45,11 @@ func drop_to_sublevel(sublevel: Level) -> void:
 
 ## Transition from sublevel to level/sublevel.
 func climb_from_sublevel() -> void:
+	assert(
+		_level_stack.is_on_sublevel(),
+		"climb_from_sublevel called without active sublevel."
+	)
+	
 	var popped_sublevel : Level = _level_stack.pop()
 	popped_sublevel.visible = false
 	get_tree().root.remove_child(popped_sublevel)
