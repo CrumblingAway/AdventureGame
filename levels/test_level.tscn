@@ -7,13 +7,13 @@
 [node name="test_level" type="Node2D" node_paths=PackedStringArray("_grid")]
 script = ExtResource("1_m8bkp")
 _grid = NodePath("test_grid")
-_start_tile = Vector2i(9, 5)
-_finish_tile = Vector2i(11, 5)
 
 [node name="test_grid" parent="." instance=ExtResource("1_wyksx")]
 _packed_scene_mapping = {
 Vector2i(10, 5): ExtResource("2_j3h8x")
 }
+_start_tile = Vector2i(9, 5)
+_finish_tile = Vector2i(11, 5)
 
 [node name="TileMap" parent="test_grid" index="0"]
 layer_0/tile_data = PackedInt32Array(327689, 0, 0, 327690, 65536, 0, 327691, 131072, 0)

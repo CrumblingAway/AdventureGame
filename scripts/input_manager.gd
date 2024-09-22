@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 			_player.move(direction)
 			
 			if Input.is_action_just_pressed("action"):
-				current_level.activate_sublevel_at(_player.global_position)
+				current_level.activate_transition_at(_player.global_position)
 
 ########## InputManager methods. ##########
 

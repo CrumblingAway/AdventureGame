@@ -41,6 +41,7 @@ func drop_to_sublevel(sublevel: Level) -> void:
 	
 	_level_stack.push(sublevel)
 	get_tree().root.add_child(_level_stack.tail())
+	_level_stack.tail().visible = true
 	_level_stack.tail().enter()
 
 ## Transition from sublevel to level/sublevel.

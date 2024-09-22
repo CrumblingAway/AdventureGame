@@ -6,10 +6,10 @@
 [node name="test_sublevel_1" type="Node2D" node_paths=PackedStringArray("_grid")]
 script = ExtResource("1_akljt")
 _grid = NodePath("test_grid")
-_start_tile = Vector2i(7, 3)
-_finish_tile = Vector2i(10, 6)
 
 [node name="test_grid" parent="." instance=ExtResource("1_286pd")]
+_start_tile = Vector2i(7, 3)
+_finish_tile = Vector2i(10, 6)
 
 [node name="TileMap" parent="test_grid" index="0"]
 layer_0/tile_data = PackedInt32Array(262151, 196608, 0, 327687, 196608, 0, 393223, 196608, 0, 262152, 196608, 0, 327688, 196608, 0, 393224, 196608, 0, 262153, 196608, 0, 327689, 196608, 0, 393225, 196608, 0, 262154, 196608, 0, 327690, 196608, 0, 393226, 131072, 0, 196615, 0, 0, 196616, 196608, 0, 196617, 196608, 0, 196618, 196608, 0)

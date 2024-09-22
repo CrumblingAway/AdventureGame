@@ -3,6 +3,7 @@ class_name Grid extends Node2D
 ########## Signals. ##########
 
 signal drop_to_sublevel(sublevel: Level)
+signal climb_from_sublevel
 
 ########## Fields. ##########
 
@@ -10,6 +11,9 @@ signal drop_to_sublevel(sublevel: Level)
 
 @export var _packed_scene_mapping : Dictionary
 var _level_mapping : Dictionary
+
+@export var _start_tile : Vector2i
+@export var _finish_tile : Vector2i
 
 ########## Node methods. ##########
 
@@ -32,3 +36,11 @@ func activate_cell(cell_position: Vector2) -> void:
 	var tilemap_position : Vector2i = _tile_map.local_to_map(cell_position)
 	if _level_mapping.has(tilemap_position):
 		drop_to_sublevel.emit(_level_mapping[tilemap_position])
+	elif tilemap_position == _finish_tile:
+		climb_from_sublevel.emit()
+
+func get_start_tile() -> Vector2i:
+	return _start_tile
+
+func get_finish_tile() -> Vector2i:
+	return _finish_tile

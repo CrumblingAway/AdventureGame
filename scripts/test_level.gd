@@ -4,7 +4,7 @@ func _ready():
 	super._ready()
 
 func _process(delta: float) -> void:
-	if _player:
+	if $player:
 		_last_player_location = _player.global_position
 
 func enter() -> void:
