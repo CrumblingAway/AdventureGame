@@ -1,12 +1,22 @@
 extends Node
 
+var _was_first_transition_called : bool = false
+
 var _level_stack : LevelStack = LevelStack.new()
 
 func _ready():
 	pass
 
+## First transition to level. Must be called before any other transition.
+func first_transition_to_level(level: Level) -> void:
+	await get_tree().root.ready
+	_was_first_transition_called = true
+	transition_to_level(level)
+
 ## Transition from level to level.
 func transition_to_level(level: Level) -> void:
+	assert(_was_first_transition_called, "transition_to_level called before first_transition_to_level")
+	
 	if _level_stack.is_on_main_level():
 		var popped_level : Level = _level_stack.pop()
 		popped_level.exit()

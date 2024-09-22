@@ -9,10 +9,7 @@ func _ready():
 	_player._ready()
 	Global.set_player(_player)
 	InputManager.set_player(_player)
-	get_tree().root.ready.connect(suck_my_shit)
+	LevelManager.first_transition_to_level(_main_level)
 
 func _process(delta: float) -> void:
 	pass
-
-func suck_my_shit() -> void:
-	LevelManager.transition_to_level(_main_level)
