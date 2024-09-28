@@ -3,6 +3,7 @@ extends Node
 var _was_first_transition_called : bool = false
 
 var _level_stack : LevelStack = LevelStack.new()
+var _level_reverse_order : LevelStack = LevelStack.new()
 
 func _ready():
 	pass
@@ -43,6 +44,18 @@ func drop_to_sublevel(sublevel: Level) -> void:
 	get_tree().root.add_child(_level_stack.tail())
 	_level_stack.tail().visible = true
 	_level_stack.tail().enter()
+
+## Exit from level/sublevel.
+func exit_from_level() -> void:
+	if _level_stack.is_on_sublevel():
+		climb_from_sublevel()
+	elif _level_stack.is_on_main_level():
+		_level_reverse_order.pop()
+		var next_level : Level = _level_reverse_order.tail()
+		if next_level:
+			transition_to_level(next_level)
+		else:
+			get_tree().quit()
 
 ## Transition from sublevel to level/sublevel.
 func climb_from_sublevel() -> void:

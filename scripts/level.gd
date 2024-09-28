@@ -9,7 +9,7 @@ var _last_player_location : Vector2
 
 func _ready() -> void:
 	_grid.drop_to_sublevel.connect(LevelManager.drop_to_sublevel)
-	_grid.climb_from_sublevel.connect(LevelManager.climb_from_sublevel)
+	_grid.exit_from_level.connect(LevelManager.exit_from_level)
 	_last_player_location = _grid._tile_map.map_to_local(_grid.get_start_tile())
 
 func _process(delta: float) -> void:

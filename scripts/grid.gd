@@ -3,7 +3,7 @@ class_name Grid extends Node2D
 ########## Signals. ##########
 
 signal drop_to_sublevel(sublevel: Level)
-signal climb_from_sublevel
+signal exit_from_level
 
 ########## Fields. ##########
 
@@ -37,7 +37,7 @@ func activate_cell(cell_position: Vector2) -> void:
 	if _level_mapping.has(tilemap_position):
 		drop_to_sublevel.emit(_level_mapping[tilemap_position])
 	elif tilemap_position == _finish_tile:
-		climb_from_sublevel.emit()
+		exit_from_level.emit()
 
 func get_start_tile() -> Vector2i:
 	return _start_tile
