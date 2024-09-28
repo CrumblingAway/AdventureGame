@@ -4,7 +4,7 @@ func _ready():
 	super._ready()
 
 func _process(delta: float) -> void:
-	if $player:
+	if _player:
 		_last_player_location = _player.global_position
 
 func enter() -> void:
@@ -16,3 +16,6 @@ func enter() -> void:
 	
 	_player.global_position = _last_player_location
 	_player.attach_to_grid(_grid)
+
+func exit() -> void:
+	_player = null

@@ -16,3 +16,6 @@ func enter() -> void:
 	
 	_player.global_position = _last_player_location
 	_player.attach_to_grid(_grid)
+
+func exit() -> void:
+	_player = null
