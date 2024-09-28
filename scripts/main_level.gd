@@ -10,8 +10,10 @@ func _ready():
 	
 	Global.set_player(_player)
 	InputManager.set_player(_player)
-	LevelManager._level_reverse_order.push(_main_level)
-	LevelManager.first_transition_to_level(_main_level)
+	
+	var levels : Array[Level] = [_main_level]
+	LevelManager.setup_with_levels(levels)
+	LevelManager.run()
 
 func _process(delta: float) -> void:
 	pass

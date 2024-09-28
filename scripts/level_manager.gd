@@ -8,6 +8,15 @@ var _level_reverse_order : LevelStack = LevelStack.new()
 func _ready():
 	pass
 
+## Setup up manager with given levels.
+func setup_with_levels(levels: Array[Level]) -> void:
+	for i in range(levels.size() - 1, -1, -1):
+		_level_reverse_order.push(levels[i])
+
+## Run level manager.
+func run() -> void:
+	first_transition_to_level(_level_reverse_order.tail())
+
 ## First transition to level. Must be called before any other transition.
 func first_transition_to_level(level: Level) -> void:
 	await get_tree().root.ready
