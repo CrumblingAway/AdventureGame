@@ -34,3 +34,6 @@ func get_finish_tile() -> Vector2i:
 
 func activate_transition_at(position: Vector2) -> void:
 	_grid.activate_cell(position)
+
+func set_player_enter_tile(tile: Vector2) -> void:
+	_last_player_location = _grid._tile_map.map_to_local(tile)

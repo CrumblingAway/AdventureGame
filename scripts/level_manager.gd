@@ -51,6 +51,7 @@ func drop_to_sublevel(sublevel: Level) -> void:
 	
 	_level_stack.push(sublevel)
 	get_tree().root.add_child(_level_stack.tail())
+	_level_stack.tail().set_player_enter_tile(sublevel.get_start_tile())
 	_level_stack.tail().visible = true
 	_level_stack.tail().enter()
 
@@ -64,7 +65,7 @@ func exit_from_level() -> void:
 		if next_level:
 			transition_to_level(next_level)
 		else:
-			get_tree().quit()
+			get_tree().quit() # Quit game
 
 ## Transition from sublevel to level/sublevel.
 func climb_from_sublevel() -> void:
