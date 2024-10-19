@@ -21,6 +21,12 @@ Global="*res://scripts/autoload/global.gd"
 LevelManager="*res://scripts/autoload/level_manager.gd"
 InputManager="*res://scripts/autoload/input_manager.gd"
 
+[debug]
+
+gdscript/warnings/unused_variable=0
+gdscript/warnings/unused_private_class_variable=0
+gdscript/warnings/unused_parameter=0
+
 [input]
 
 move_up={
