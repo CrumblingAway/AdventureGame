@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7rudgc2ktcrc"]
+
+[ext_resource type="Script" path="res://scripts/levels/test_house_first_floor_level.gd" id="1_qfqt8"]
+[ext_resource type="PackedScene" uid="uid://ct6tpknjxvxpt" path="res://objects/Grid.tscn" id="2_qof6g"]
+[ext_resource type="TileSet" uid="uid://c2a2sl7vv5f7u" path="res://resources/test_level_tileset.tres" id="3_p6756"]
+[ext_resource type="PackedScene" uid="uid://egyhb3xct1n3" path="res://levels/test_house_second_floor_level.tscn" id="3_s2nko"]
+
+[node name="test_house_first_floor_level" type="Node2D" node_paths=PackedStringArray("_grid")]
+script = ExtResource("1_qfqt8")
+_grid = NodePath("Grid")
+
+[node name="Grid" parent="." instance=ExtResource("2_qof6g")]
+_packed_scene_mapping = {
+Vector2i(11, 2): ExtResource("3_s2nko")
+}
+_start_tile = Vector2i(9, 6)
+_finish_tile = Vector2i(9, 6)
+
+[node name="TileMap" parent="Grid" index="0"]
+tile_set = ExtResource("3_p6756")
+layer_0/tile_data = PackedInt32Array(131079, 0, 4, 196615, 0, 4, 262151, 0, 4, 327687, 0, 4, 393223, 65536, 4, 131080, 0, 4, 196616, 0, 4, 262152, 65536, 4, 327688, 65536, 4, 393224, 65536, 4, 131081, 0, 4, 196617, 65536, 4, 262153, 65536, 4, 327689, 0, 4, 393225, 65536, 4, 131082, 65536, 4, 196618, 0, 4, 262154, 65536, 4, 327690, 65536, 4, 393226, 65536, 4, 131083, 131072, 5, 196619, 65536, 4, 262155, 0, 4, 327691, 65536, 4, 393227, 65536, 4, 65547, 131072, 4)
+layer_1/name = "Door"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = false
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(393225, 0, 5)
+
+[editable path="Grid"]

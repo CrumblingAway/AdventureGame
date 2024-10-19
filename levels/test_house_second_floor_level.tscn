@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://egyhb3xct1n3"]
+
+[ext_resource type="Script" path="res://scripts/levels/test_house_second_floor_level.gd" id="1_htq1f"]
+[ext_resource type="PackedScene" uid="uid://ct6tpknjxvxpt" path="res://objects/Grid.tscn" id="2_25nwy"]
+[ext_resource type="TileSet" uid="uid://c2a2sl7vv5f7u" path="res://resources/test_level_tileset.tres" id="3_8355k"]
+
+[node name="test_house_second_floor_level" type="Node2D" node_paths=PackedStringArray("_grid")]
+script = ExtResource("1_htq1f")
+_grid = NodePath("Grid")
+
+[node name="Grid" parent="." instance=ExtResource("2_25nwy")]
+_start_tile = Vector2i(11, 2)
+_finish_tile = Vector2i(11, 2)
+
+[node name="TileMap" parent="Grid" index="0"]
+tile_set = ExtResource("3_8355k")
+layer_0/tile_data = PackedInt32Array(131079, 65536, 4, 196615, 0, 4, 262151, 0, 4, 327687, 65536, 4, 393223, 65536, 4, 131080, 0, 4, 196616, 65536, 4, 262152, 65536, 4, 327688, 0, 4, 393224, 0, 4, 131081, 65536, 4, 196617, 65536, 4, 262153, 65536, 4, 327689, 0, 4, 393225, 65536, 4, 131082, 65536, 4, 196618, 65536, 4, 262154, 0, 4, 327690, 0, 4, 393226, 65536, 4, 131083, 65536, 5, 196619, 0, 4, 262155, 0, 4, 327691, 0, 4, 393227, 0, 4)
+
+[editable path="Grid"]
