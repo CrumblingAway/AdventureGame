@@ -4,6 +4,7 @@ var _was_first_transition_called : bool = false
 
 var _level_stack : LevelStack = LevelStack.new()
 var _level_reverse_order : LevelStack = LevelStack.new()
+var _combat_level : CombatLevel
 
 func _ready():
 	pass
@@ -81,8 +82,19 @@ func climb_from_sublevel() -> void:
 	_level_stack.tail().visible = true
 	_level_stack.tail().enter()
 
+func drop_to_combat_level() -> void:
+	pass
+
+func climb_from_combat_level() -> void:
+	pass
+
 func get_current_level() -> Level:
+	if _combat_level:
+		return null
 	return _level_stack.tail()
+
+func get_current_combat_level() -> CombatLevel:
+	return _combat_level
 
 class LevelStack:
 	
