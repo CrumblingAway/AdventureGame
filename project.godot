@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://scripts/global.gd"
-LevelManager="*res://scripts/level_manager.gd"
-InputManager="*res://scripts/input_manager.gd"
+Global="*res://scripts/autoload/global.gd"
+LevelManager="*res://scripts/autoload/level_manager.gd"
+InputManager="*res://scripts/autoload/input_manager.gd"
 
 [input]
 
