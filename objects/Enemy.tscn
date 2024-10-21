@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://c36o0ywrj6vrl"]
+
+[ext_resource type="PackedScene" uid="uid://lrp71qneqny5" path="res://components/GridMovement2D.tscn" id="1_2qnhj"]
+[ext_resource type="Script" path="res://scripts/test_enemy.gd" id="1_a4t8w"]
+[ext_resource type="Texture2D" uid="uid://bdstp5fgnfhnn" path="res://assets/test_enemy.png" id="2_2i2xj"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_a4t8w")
+
+[node name="GridMovement2D" parent="." instance=ExtResource("1_2qnhj")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2i2xj")
