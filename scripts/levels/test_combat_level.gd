@@ -5,6 +5,8 @@ class_name CombatLevel extends Node2D
 var _player : Player
 var _enemies : Array[Enemy]
 
+var _combat_manager : CombatManager
+
 @onready var _tile_map : TileMap = $TileMap
 
 ########## Combat level methods. ##########
@@ -21,7 +23,8 @@ func setup(
 		for x in range(board_width):
 			_tile_map.set_cell(0, Vector2i(x, y), 0, Vector2i(0 if x == 0 else 1, 0))
 	
-	# Add terrain effects.
+	# TODO: Add terrain effects.
+	_combat_manager = CombatManager.new()
 	
 	# Place player and enemies.
 	var player_position : Vector2 = _tile_map.map_to_local(Vector2i(0, board_height / 2))
