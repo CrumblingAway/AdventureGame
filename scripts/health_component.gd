@@ -10,12 +10,12 @@ signal health_reached_max
 @export var max_health_points : int
 @export var health_points : int:
 	get:
-		return _health_points
+		return health_points
 	set(value):
-		_health_points = value
-		if _health_points == 0:
+		health_points = value
+		if health_points == 0:
 			health_reached_zero.emit()
-		elif _health_points == _max_health_points:
+		elif health_points == max_health_points:
 			health_reached_max.emit()
 
 ########## Health methods. ##########
