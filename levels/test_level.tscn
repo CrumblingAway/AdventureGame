@@ -28,8 +28,8 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(131078, 0, 1, 196614, 0, 2, 262150, 0, 3, 131079, 65536, 1, 196615, 65536, 2, 262151, 65536, 3, 131080, 131072, 1, 196616, 131072, 2, 262152, 131072, 3)
 
-[node name="CombatSearcher" parent="." node_paths=PackedStringArray("_grid") instance=ExtResource("5_65myk")]
-_grid = NodePath("../Grid")
+[node name="CombatSearcher" parent="." node_paths=PackedStringArray("_level") instance=ExtResource("5_65myk")]
+_level = NodePath("..")
 
 [editable path="Grid"]
 [editable path="CombatSearcher"]

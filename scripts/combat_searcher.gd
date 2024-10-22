@@ -1,6 +1,6 @@
 class_name CombatSearcher extends Node2D
 
-@export var _grid : Grid
+@export var _level : Level
 
 @export var _cursor : Node2D
 var _cursor_mover : GridMovement2D
@@ -25,7 +25,7 @@ func move_cursor(direction: Vector2i) -> void:
 func _ready() -> void:
 	if _cursor:
 		_cursor_mover = _cursor.get_node("GridMovement2D")
-		_cursor_mover.set_grid(_grid)
+		_cursor_mover.set_grid(_level._grid)
 
 func _process(delta: float) -> void:
 	pass

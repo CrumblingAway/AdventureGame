@@ -17,8 +17,8 @@ _finish_tile = Vector2i(11, 2)
 tile_set = ExtResource("3_8355k")
 layer_0/tile_data = PackedInt32Array(131079, 65536, 4, 196615, 0, 4, 262151, 0, 4, 327687, 65536, 4, 393223, 65536, 4, 131080, 0, 4, 196616, 65536, 4, 262152, 65536, 4, 327688, 0, 4, 393224, 0, 4, 131081, 65536, 4, 196617, 65536, 4, 262153, 65536, 4, 327689, 0, 4, 393225, 65536, 4, 131082, 65536, 4, 196618, 65536, 4, 262154, 0, 4, 327690, 0, 4, 393226, 65536, 4, 131083, 65536, 5, 196619, 0, 4, 262155, 0, 4, 327691, 0, 4, 393227, 0, 4)
 
-[node name="CombatSearcher" parent="." node_paths=PackedStringArray("_grid") instance=ExtResource("4_vs1gi")]
-_grid = NodePath("../Grid")
+[node name="CombatSearcher" parent="." node_paths=PackedStringArray("_level") instance=ExtResource("4_vs1gi")]
+_level = NodePath("..")
 
 [editable path="Grid"]
 [editable path="CombatSearcher"]
