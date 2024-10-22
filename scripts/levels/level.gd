@@ -5,6 +5,9 @@ class_name Level extends Node
 var _player : Player
 var _last_player_location : Vector2
 
+@export var _enemies : Array[Enemy]
+var _last_enemies_locations : Array[Vector2]
+
 ########## Node methods. ##########
 
 func _ready() -> void:

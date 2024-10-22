@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7rudgc2ktcrc"]
+[gd_scene load_steps=7 format=3 uid="uid://b7rudgc2ktcrc"]
 
 [ext_resource type="Script" path="res://scripts/levels/test_house_first_floor_level.gd" id="1_qfqt8"]
 [ext_resource type="PackedScene" uid="uid://bo7g4ud2va21c" path="res://objects/CombatSearcher.tscn" id="2_o2rto"]
 [ext_resource type="PackedScene" uid="uid://ct6tpknjxvxpt" path="res://objects/Grid.tscn" id="2_qof6g"]
 [ext_resource type="TileSet" uid="uid://c2a2sl7vv5f7u" path="res://resources/test_level_tileset.tres" id="3_p6756"]
 [ext_resource type="PackedScene" uid="uid://egyhb3xct1n3" path="res://levels/test_house_second_floor_level.tscn" id="3_s2nko"]
+[ext_resource type="PackedScene" uid="uid://c36o0ywrj6vrl" path="res://objects/Enemy.tscn" id="5_spgni"]
 
-[node name="test_house_first_floor_level" type="Node2D" node_paths=PackedStringArray("_grid")]
+[node name="test_house_first_floor_level" type="Node2D" node_paths=PackedStringArray("_grid", "_enemies")]
 script = ExtResource("1_qfqt8")
 _grid = NodePath("Grid")
+_enemies = [NodePath("Enemy"), NodePath("Enemy2")]
 
 [node name="Grid" parent="." instance=ExtResource("2_qof6g")]
 _packed_scene_mapping = {
@@ -27,6 +29,12 @@ layer_1/y_sort_enabled = false
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(393225, 0, 5)
+
+[node name="Enemy" parent="." instance=ExtResource("5_spgni")]
+position = Vector2(544, 288)
+
+[node name="Enemy2" parent="." instance=ExtResource("5_spgni")]
+position = Vector2(736, 224)
 
 [node name="CombatSearcher" parent="." node_paths=PackedStringArray("_level") instance=ExtResource("2_o2rto")]
 _level = NodePath("..")
