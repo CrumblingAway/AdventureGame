@@ -56,19 +56,25 @@ func _process(delta: float) -> void:
 			if Input.is_action_just_pressed("combat_mode"):
 				_mode = Mode.MOVEMENT
 				LevelManager.get_current_level().get_node("CombatSearcher").exit()
-			
-			var direction : Vector2i = Vector2i.ZERO
-			if Input.is_action_just_pressed("move_up"):
-				direction = Vector2i.UP
-			elif Input.is_action_just_pressed("move_down"):
-				direction = Vector2i.DOWN
-			elif Input.is_action_just_pressed("move_left"):
-				direction = Vector2i.LEFT
-			elif Input.is_action_just_pressed("move_right"):
-				direction = Vector2i.RIGHT
-			LevelManager.get_current_level().get_node("CombatSearcher").move_cursor(direction)
+			elif Input.is_action_just_pressed("action"):
+				if LevelManager.get_current_level().get_node("CombatSearcher").start_combat():
+					_mode = Mode.COMBAT
+			else:
+				var direction : Vector2i = Vector2i.ZERO
+				if Input.is_action_just_pressed("move_up"):
+					direction = Vector2i.UP
+				elif Input.is_action_just_pressed("move_down"):
+					direction = Vector2i.DOWN
+				elif Input.is_action_just_pressed("move_left"):
+					direction = Vector2i.LEFT
+				elif Input.is_action_just_pressed("move_right"):
+					direction = Vector2i.RIGHT
+				LevelManager.get_current_level().get_node("CombatSearcher").move_cursor(direction)
 		Mode.COMBAT:
-			pass
+			if Input.is_action_just_pressed("action"):
+				LevelManager.climb_from_combat_level()
+				LevelManager.get_current_level().get_node("CombatSearcher").exit()
+				_mode = Mode.MOVEMENT
 		_:
 			print("Invalid input mode.")
 	

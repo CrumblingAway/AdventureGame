@@ -3,7 +3,7 @@ class_name CombatLevel extends Node2D
 ########## Fields. ##########
 
 var _player : Player
-var _enemies : Array[Enemy]
+var _enemies : Array
 
 var _combat_manager : CombatManager
 
