@@ -3,7 +3,7 @@ extends Node
 
 enum Mode
 {
-	MENU,
+	PAUSE,
 	COMBAT_SEARCH,
 	COMBAT,
 	MOVEMENT,
@@ -13,9 +13,7 @@ enum Mode
 var _player : Player
 
 var _mode : Mode = Mode.MOVEMENT
-
-#var _is_game_paused : bool = false
-#var _is_combat_search_mode : bool = false
+var _prev_mode : Mode = Mode.NUM_OF_MODES
 
 ########## Node methods. ##########
 
@@ -39,6 +37,9 @@ func _process(delta: float) -> void:
 					combat_searcher.start_at(_player.global_position)
 			elif Input.is_action_just_pressed("action"):
 				current_level.activate_transition_at(_player.global_position)
+			elif Input.is_action_just_pressed("pause"):
+				_prev_mode = _mode
+				_mode = Mode.PAUSE
 			else:
 				var direction : Vector2i = Vector2i.ZERO
 				if Input.is_action_just_pressed("move_up"):
@@ -50,8 +51,9 @@ func _process(delta: float) -> void:
 				elif Input.is_action_just_pressed("move_right"):
 					direction = Vector2i.RIGHT
 				_player.move(direction)
-		Mode.MENU:
-			pass
+		Mode.PAUSE:
+			if Input.is_action_just_pressed("pause"):
+				_mode = _prev_mode
 		Mode.COMBAT_SEARCH:
 			if Input.is_action_just_pressed("combat_mode"):
 				_mode = Mode.MOVEMENT
@@ -59,6 +61,9 @@ func _process(delta: float) -> void:
 			elif Input.is_action_just_pressed("action"):
 				if LevelManager.get_current_level().get_node("CombatSearcher").start_combat():
 					_mode = Mode.COMBAT
+			elif Input.is_action_just_pressed("pause"):
+				_prev_mode = _mode
+				_mode = Mode.PAUSE
 			else:
 				var direction : Vector2i = Vector2i.ZERO
 				if Input.is_action_just_pressed("move_up"):
@@ -75,36 +80,11 @@ func _process(delta: float) -> void:
 				LevelManager.climb_from_combat_level()
 				LevelManager.get_current_level().get_node("CombatSearcher").exit()
 				_mode = Mode.MOVEMENT
+			elif Input.is_action_just_pressed("pause"):
+				_prev_mode = _mode
+				_mode = Mode.PAUSE
 		_:
 			print("Invalid input mode.")
-	
-#	if not _player:
-#		return
-#
-#	if not _is_game_paused:
-#		if Input.is_action_just_pressed("combat_mode"):
-#			_is_combat_search_mode = not _is_combat_search_mode
-#
-#		if not _is_combat_search_mode:
-#			var current_level : Level = LevelManager.get_current_level()
-#			if current_level:
-#				var direction : Vector2i = Vector2i.ZERO
-#				if Input.is_action_just_pressed("move_up"):
-#					direction = Vector2i.UP
-#				elif Input.is_action_just_pressed("move_down"):
-#					direction = Vector2i.DOWN
-#				elif Input.is_action_just_pressed("move_left"):
-#					direction = Vector2i.LEFT
-#				elif Input.is_action_just_pressed("move_right"):
-#					direction = Vector2i.RIGHT
-#				_player.move(direction)
-#
-#				if Input.is_action_just_pressed("action"):
-#					current_level.activate_transition_at(_player.global_position)
-#			elif LevelManager.get_current_combat_level():
-#				pass
-#		else:
-#			pass
 
 ########## InputManager methods. ##########
 
