@@ -11,8 +11,7 @@ var _combat_manager : CombatManager
 
 ########## Combat level methods. ##########
 
-func setup(
-	player: Player,
+func enter(
 	enemies: Array[Enemy],
 	enemy_distances: Array[int]
 ) -> void:
@@ -28,7 +27,7 @@ func setup(
 	
 	# Place player and enemies.
 	var player_position : Vector2 = _tile_map.map_to_local(Vector2i(0, board_height / 2))
-	_player = player
+	_player = Global.get_player()
 	if _player.get_parent():
 		_player.reparent(self)
 	else:
@@ -44,6 +43,9 @@ func setup(
 		else:
 			add_child(enemy)
 		enemy.global_position = enemy_position
+
+func exit() -> void:
+	pass
 
 ########## Node2D methods. ##########
 

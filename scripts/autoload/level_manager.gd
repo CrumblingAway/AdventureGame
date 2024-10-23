@@ -82,11 +82,22 @@ func climb_from_sublevel() -> void:
 	_level_stack.tail().visible = true
 	_level_stack.tail().enter()
 
-func drop_to_combat_level() -> void:
-	pass
+func drop_to_combat_level(enemies: Array[Enemy], enemies_distances: Array[int]) -> void:
+	_combat_level = preload("res://levels/test_combat_level.tscn").instantiate()
+	get_tree().root.add_child(_combat_level)
+	_combat_level.enter(enemies, enemies_distances)
+	_combat_level.visible = true
+	
+	_level_stack.tail().visible = false
+	_level_stack.tail().exit()
 
 func climb_from_combat_level() -> void:
-	pass
+	_combat_level.exit()
+	get_tree().root.remove_child(_combat_level)
+	_combat_level = null
+	
+	_level_stack.tail().enter()
+	_level_stack.tail().visible = true
 
 func get_current_level() -> Level:
 	if _combat_level:
