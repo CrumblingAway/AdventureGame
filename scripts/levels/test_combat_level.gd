@@ -4,6 +4,7 @@ class_name CombatLevel extends Node2D
 
 var _player : Player
 var _enemies : Array
+var _selected_enemy_index : int
 
 var _combat_manager : CombatManager
 
@@ -43,6 +44,8 @@ func enter(
 		else:
 			add_child(enemy)
 		enemy.global_position = enemy_position
+	
+	_selected_enemy_index = 0
 
 func exit() -> void:
 	pass
@@ -50,10 +53,12 @@ func exit() -> void:
 func process_input() -> bool:
 	var is_combat_input : bool = false
 	if Input.is_action_just_pressed("move_down"):
-		# Switch to next target
+		_enemies[_selected_enemy_index].visible = true
+		_selected_enemy_index = (_selected_enemy_index + 1) % _enemies.size()
 		is_combat_input = true
 	elif Input.is_action_just_pressed("move_up"):
-		# Switch to previous target
+		_enemies[_selected_enemy_index].visible = true
+		_selected_enemy_index = (_selected_enemy_index - 1) % _enemies.size()
 		is_combat_input = true
 	elif Input.is_action_just_pressed("action"):
 		# Execute selected action
@@ -70,5 +75,5 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
+	_enemies[_selected_enemy_index].visible = false
 

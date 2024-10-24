@@ -10,7 +10,7 @@
 [node name="test_house_first_floor_level" type="Node2D" node_paths=PackedStringArray("_grid", "_enemies")]
 script = ExtResource("1_qfqt8")
 _grid = NodePath("Grid")
-_enemies = [NodePath("Enemy"), NodePath("Enemy2")]
+_enemies = [NodePath("Enemy"), NodePath("Enemy2"), NodePath("Enemy3")]
 
 [node name="Grid" parent="." instance=ExtResource("2_qof6g")]
 _packed_scene_mapping = {
@@ -36,6 +36,10 @@ _group = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("5_spgni")]
 position = Vector2(736, 224)
+_group = 1
+
+[node name="Enemy3" parent="." instance=ExtResource("5_spgni")]
+position = Vector2(480, 160)
 _group = 1
 
 [node name="CombatSearcher" parent="." node_paths=PackedStringArray("_level") instance=ExtResource("2_o2rto")]
