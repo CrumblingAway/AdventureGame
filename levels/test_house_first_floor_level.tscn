@@ -32,9 +32,11 @@ layer_1/tile_data = PackedInt32Array(393225, 0, 5)
 
 [node name="Enemy" parent="." instance=ExtResource("5_spgni")]
 position = Vector2(544, 288)
+_group = 1
 
 [node name="Enemy2" parent="." instance=ExtResource("5_spgni")]
 position = Vector2(736, 224)
+_group = 1
 
 [node name="CombatSearcher" parent="." node_paths=PackedStringArray("_level") instance=ExtResource("2_o2rto")]
 _level = NodePath("..")

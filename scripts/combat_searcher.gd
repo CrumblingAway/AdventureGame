@@ -23,12 +23,22 @@ func move_cursor(direction: Vector2i) -> void:
 	_cursor_mover.move(direction)
 
 func start_combat() -> bool:
+	var enemy_group : int = -1
 	for enemy in _level._enemies:
 		if enemy.global_position == _cursor.global_position:
-			var enemy_arr : Array[Enemy] = [enemy]
-			var dist_arr : Array[int] = [4]
-			enter_combat_level.emit(enemy_arr, dist_arr)
-			return true
+			enemy_group = enemy._group
+	
+	var enemies : Array[Enemy]
+	var distances : Array[int]
+	for enemy in _level._enemies:
+		if enemy._group == enemy_group:
+			enemies.push_back(enemy)
+			distances.push_back(int((_level._player.global_position - enemy.global_position).abs().dot(Vector2.ONE) / _level._grid._tile_map.tile_set.tile_size.x))
+	
+	if enemies:
+		enter_combat_level.emit(enemies, distances)
+		return true
+	
 	return false
 
 ########## Node2D methods. ##########
