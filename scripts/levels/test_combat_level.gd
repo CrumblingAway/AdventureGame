@@ -47,6 +47,23 @@ func enter(
 func exit() -> void:
 	pass
 
+func process_input() -> bool:
+	var is_combat_input : bool = false
+	if Input.is_action_just_pressed("move_down"):
+		# Switch to next target
+		is_combat_input = true
+	elif Input.is_action_just_pressed("move_up"):
+		# Switch to previous target
+		is_combat_input = true
+	elif Input.is_action_just_pressed("action"):
+		# Execute selected action
+		
+		LevelManager.climb_from_combat_level()
+		LevelManager.get_current_level().get_node("CombatSearcher").exit()
+		
+		is_combat_input = true
+	return is_combat_input
+
 ########## Node2D methods. ##########
 
 func _ready() -> void:

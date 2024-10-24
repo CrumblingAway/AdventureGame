@@ -76,10 +76,10 @@ func _process(delta: float) -> void:
 					direction = Vector2i.RIGHT
 				LevelManager.get_current_level().get_node("CombatSearcher").move_cursor(direction)
 		Mode.COMBAT:
-			if Input.is_action_just_pressed("action"):
-				LevelManager.climb_from_combat_level()
-				LevelManager.get_current_level().get_node("CombatSearcher").exit()
+			if not LevelManager.get_current_combat_level():
 				_mode = Mode.MOVEMENT
+			elif LevelManager.get_current_combat_level().process_input():
+				return
 			elif Input.is_action_just_pressed("pause"):
 				_prev_mode = _mode
 				_mode = Mode.PAUSE
