@@ -53,11 +53,11 @@ func exit() -> void:
 func process_input() -> bool:
 	var is_combat_input : bool = false
 	if Input.is_action_just_pressed("move_down"):
-		_enemies[_selected_enemy_index].visible = true
+		_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
 		_selected_enemy_index = (_selected_enemy_index + 1) % _enemies.size()
 		is_combat_input = true
 	elif Input.is_action_just_pressed("move_up"):
-		_enemies[_selected_enemy_index].visible = true
+		_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
 		_selected_enemy_index = (_selected_enemy_index - 1) % _enemies.size()
 		is_combat_input = true
 	elif Input.is_action_just_pressed("action"):
@@ -75,5 +75,5 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	_enemies[_selected_enemy_index].visible = false
+	_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 1.0)
 
