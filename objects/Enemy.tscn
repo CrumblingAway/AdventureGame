@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://c36o0ywrj6vrl"]
+[gd_scene load_steps=7 format=3 uid="uid://c36o0ywrj6vrl"]
 
 [ext_resource type="PackedScene" uid="uid://lrp71qneqny5" path="res://components/GridMovement2D.tscn" id="1_2qnhj"]
 [ext_resource type="Script" path="res://scripts/test_enemy.gd" id="1_a4t8w"]
 [ext_resource type="Shader" path="res://shaders/enemy_target.gdshader" id="1_la4uy"]
 [ext_resource type="Texture2D" uid="uid://bdstp5fgnfhnn" path="res://assets/test_enemy.png" id="2_2i2xj"]
+[ext_resource type="PackedScene" uid="uid://chr8ddtkkf8yy" path="res://components/HealthComponent.tscn" id="2_o14tc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cv2i8"]
 resource_local_to_scene = true
@@ -12,6 +13,10 @@ shader_parameter/enabled = 0.0
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_a4t8w")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_o14tc")]
+max_health_points = 50
+health_points = 50
 
 [node name="GridMovement2D" parent="." instance=ExtResource("1_2qnhj")]
 
