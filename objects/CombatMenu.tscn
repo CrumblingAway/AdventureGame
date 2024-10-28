@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://eio2owwuie83"]
+
+[ext_resource type="Script" path="res://scripts/combat_menu.gd" id="1_8d1ov"]
+
+[node name="CombatMenu" type="Node2D"]
+script = ExtResource("1_8d1ov")
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Weapons" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Weapons"
+
+[node name="Items" type="Button" parent="MainMenu"]
+layout_mode = 2
+text = "Items"
+
+[node name="WeaponsMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemsMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
