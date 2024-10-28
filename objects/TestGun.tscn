@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cy5xi4wyqjrot"]
+
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_sx12x"]
+
+[node name="TestGun" type="Node"]
+script = ExtResource("1_sx12x")
+_damage = 10
+_accuracy = 1.0
