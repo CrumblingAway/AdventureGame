@@ -60,7 +60,8 @@ func enter(
 	_selected_enemy_index = 0
 	
 	_mode = Mode.MENU
-	_player_combat_menu.display_main_menu_at(_player.global_position)
+	_player_combat_menu.global_position = _player.global_position
+	_player_combat_menu.display_main_menu()
 
 func exit() -> void:
 	pass

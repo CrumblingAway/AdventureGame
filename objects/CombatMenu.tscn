@@ -9,14 +9,23 @@ script = ExtResource("1_8d1ov")
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
+focus_mode = 2
 mouse_filter = 2
 
 [node name="Weapons" type="Button" parent="MainMenu"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Items")
+focus_neighbor_bottom = NodePath("../Items")
+focus_next = NodePath("../Items")
+focus_previous = NodePath("../Items")
 text = "Weapons"
 
 [node name="Items" type="Button" parent="MainMenu"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Weapons")
+focus_neighbor_bottom = NodePath("../Weapons")
+focus_next = NodePath("../Weapons")
+focus_previous = NodePath("../Weapons")
 text = "Items"
 
 [node name="WeaponsMenu" type="VBoxContainer" parent="."]
@@ -24,7 +33,20 @@ visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Back" type="Button" parent="WeaponsMenu"]
+layout_mode = 2
+text = "WeaponBack"
+
 [node name="ItemsMenu" type="VBoxContainer" parent="."]
 visible = false
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Back" type="Button" parent="ItemsMenu"]
+layout_mode = 2
+text = "ItemsBack"
+
+[connection signal="pressed" from="MainMenu/Weapons" to="." method="display_weapon_menu"]
+[connection signal="pressed" from="MainMenu/Items" to="." method="display_item_menu"]
+[connection signal="pressed" from="WeaponsMenu/Back" to="." method="display_main_menu"]
+[connection signal="pressed" from="ItemsMenu/Back" to="." method="display_main_menu"]
