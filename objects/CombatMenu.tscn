@@ -16,16 +16,12 @@ mouse_filter = 2
 layout_mode = 2
 focus_neighbor_top = NodePath("../Items")
 focus_neighbor_bottom = NodePath("../Items")
-focus_next = NodePath("../Items")
-focus_previous = NodePath("../Items")
 text = "Weapons"
 
 [node name="Items" type="Button" parent="MainMenu"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Weapons")
 focus_neighbor_bottom = NodePath("../Weapons")
-focus_next = NodePath("../Weapons")
-focus_previous = NodePath("../Weapons")
 text = "Items"
 
 [node name="WeaponsMenu" type="VBoxContainer" parent="."]
