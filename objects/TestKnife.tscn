@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cduvblubula1a"]
+
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_bnwhd"]
+
+[node name="TestKnife" type="Node"]
+script = ExtResource("1_bnwhd")
+_name = "Knife"
+_damage = 5
+_accuracy = 1.0

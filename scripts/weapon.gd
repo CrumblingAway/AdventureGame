@@ -2,6 +2,8 @@ class_name Weapon extends Node
 
 ########## Fields. ##########
 
+@export var _name : String
+
 @export var _damage : int
 @export var _accuracy: float
 

@@ -4,5 +4,6 @@
 
 [node name="TestGun" type="Node"]
 script = ExtResource("1_sx12x")
+_name = "Gun"
 _damage = 10
 _accuracy = 1.0

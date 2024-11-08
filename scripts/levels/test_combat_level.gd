@@ -60,6 +60,7 @@ func enter(
 	_selected_enemy_index = 0
 	
 	_mode = Mode.MENU
+	_setup_player_menu()
 	_player_combat_menu.global_position = _player.global_position
 	_player_combat_menu.display_main_menu()
 
@@ -107,11 +108,48 @@ func process_input() -> bool:
 			pass
 	return is_combat_input
 
+func _setup_player_menu() -> void:
+	var player_inventory : Node = _player.get_node("Inventory")
+		
+	# Add buttons for weapons.
+	_setup_player_weapons_menu(player_inventory.get_node("Weapons"))
+	
+	# Add buttons for items.
+	_setup_player_items_menu(player_inventory.get_node("Items"))
+	
+	pass
+
+func _setup_player_weapons_menu(weapons: Node) -> void:
+	# Connect buttons to top and bottom neighbors.
+	for weapon_idx in range(weapons.get_children().size() - 1, -1, -1):
+		var weapon : Weapon = weapons.get_children()[weapon_idx]
+		
+		var weapon_button_label : String = "%s (%d,%2.1f)" % [weapon._name, weapon._damage, weapon._accuracy]
+		var weapon_button : Button = Button.new()
+		weapon_button.text = weapon_button_label
+		
+		_player_combat_menu.get_node("WeaponsMenu").add_child(weapon_button)
+		_player_combat_menu.get_node("WeaponsMenu").move_child(weapon_button, 0)
+		
+		var next_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(1)
+		next_button.focus_neighbor_top = weapon_button.get_path()
+		weapon_button.focus_neighbor_bottom = next_button.get_path()
+	
+	# Connect top and bottom buttons.
+	if _player_combat_menu.get_node("WeaponsMenu").get_child_count() > 1:
+		var first_weapon_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(0)
+		var last_weapon_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(_player_combat_menu.get_node("WeaponsMenu").get_child_count() - 1)
+		first_weapon_button.focus_neighbor_top = last_weapon_button.get_path()
+		last_weapon_button.focus_neighbor_bottom = first_weapon_button.get_path()
+
+func _setup_player_items_menu(weapons: Node) -> void:
+	pass
+
 ########## Node2D methods. ##########
 
 func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 1.0)
+	pass
 
