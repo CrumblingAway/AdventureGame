@@ -18,6 +18,7 @@ var _selected_enemy_index : int
 var _mode : Mode
 
 var _combat_manager : CombatManager
+var _player_action
 
 @onready var _tile_map : TileMap = $TileMap
 
@@ -98,51 +99,17 @@ func _setup_player_menu() -> void:
 	# Add buttons for items.
 	_setup_player_items_menu(player_inventory.get_node("Items"))
 
-func _setup_player_weapons_menu(weapons: Node) -> void:
-	# Connect buttons to top and bottom neighbors.
-	for weapon_idx in range(weapons.get_children().size() - 1, -1, -1):
-		var weapon : Weapon = weapons.get_children()[weapon_idx]
-		
-		var weapon_button_label : String = "%s (%d,%2.1f)" % [weapon._name, weapon._damage, weapon._accuracy]
-		var weapon_button : Button = Button.new()
-		weapon_button.text = weapon_button_label
-		
-		_player_combat_menu.get_node("WeaponsMenu").add_child(weapon_button)
-		_player_combat_menu.get_node("WeaponsMenu").move_child(weapon_button, 0)
-		
-		var next_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(1)
-		next_button.focus_neighbor_top = weapon_button.get_path()
-		weapon_button.focus_neighbor_bottom = next_button.get_path()
-	
-	# Connect top and bottom buttons.
-	if _player_combat_menu.get_node("WeaponsMenu").get_child_count() > 1:
-		var first_weapon_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(0)
-		var last_weapon_button : Button = _player_combat_menu.get_node("WeaponsMenu").get_child(_player_combat_menu.get_node("WeaponsMenu").get_child_count() - 1)
-		first_weapon_button.focus_neighbor_top = last_weapon_button.get_path()
-		last_weapon_button.focus_neighbor_bottom = first_weapon_button.get_path()
+func _setup_player_weapons_menu(weapons_container: Node) -> void:
+	var weapons : Array[Weapon]
+	for weapon in weapons_container.get_children():
+		weapons.push_back(weapon as Weapon)
+	_player_combat_menu.add_weapons_buttons(weapons)
 
-func _setup_player_items_menu(items: Node) -> void:
-	# Connect buttons to top and bottom neighbors.
-	for item_idx in range(items.get_children().size() - 1, -1, -1):
-		var item : Weapon = items.get_children()[item_idx]
-		
-		var item_button_label : String = "%s (%d,%2.1f)" % [item._name, item._damage, item._accuracy]
-		var item_button : Button = Button.new()
-		item_button.text = item_button_label
-		
-		_player_combat_menu.get_node("ItemsMenu").add_child(item_button)
-		_player_combat_menu.get_node("ItemsMenu").move_child(item_button, 0)
-		
-		var next_button : Button = _player_combat_menu.get_node("ItemsMenu").get_child(1)
-		next_button.focus_neighbor_top = item_button.get_path()
-		item_button.focus_neighbor_bottom = next_button.get_path()
-	
-	# Connect top and bottom buttons.
-	if _player_combat_menu.get_node("ItemsMenu").get_child_count() > 1:
-		var first_item_button : Button = _player_combat_menu.get_node("ItemsMenu").get_child(0)
-		var last_item_button : Button = _player_combat_menu.get_node("ItemsMenu").get_child(_player_combat_menu.get_node("ItemsMenu").get_child_count() - 1)
-		first_item_button.focus_neighbor_top = last_item_button.get_path()
-		last_item_button.focus_neighbor_bottom = first_item_button.get_path()
+func _setup_player_items_menu(items_container: Node) -> void:
+	var items : Array
+	for item in items_container.get_children():
+		items.push_back(item)
+	_player_combat_menu.add_weapons_buttons(items)
 
 ########## Node2D methods. ##########
 

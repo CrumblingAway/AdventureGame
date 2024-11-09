@@ -45,6 +45,52 @@ func display_item_menu() -> void:
 	back_button.grab_focus()
 	_focused_button = back_button
 
+func add_weapons_buttons(weapons: Array[Weapon]) -> void:
+	# Connect buttons to top and bottom neighbors.
+	for weapon_idx in range(weapons.size() - 1, -1, -1):
+		var weapon : Weapon = weapons[weapon_idx]
+		
+		var weapon_button_label : String = "%s (%d,%2.1f)" % [weapon._name, weapon._damage, weapon._accuracy]
+		var weapon_button : Button = Button.new()
+		weapon_button.text = weapon_button_label
+		
+		_weapons_menu.add_child(weapon_button)
+		_weapons_menu.move_child(weapon_button, 0)
+		
+		var next_button : Button = _weapons_menu.get_child(1)
+		next_button.focus_neighbor_top = weapon_button.get_path()
+		weapon_button.focus_neighbor_bottom = next_button.get_path()
+	
+	# Connect top and bottom buttons.
+	if _weapons_menu.get_child_count() > 1:
+		var first_weapon_button : Button = _weapons_menu.get_child(0)
+		var last_weapon_button : Button = _weapons_menu.get_child(_weapons_menu.get_child_count() - 1)
+		first_weapon_button.focus_neighbor_top = last_weapon_button.get_path()
+		last_weapon_button.focus_neighbor_bottom = first_weapon_button.get_path()
+
+func add_items_buttons(items: Array) -> void:
+	# Connect buttons to top and bottom neighbors.
+	for item_idx in range(items.size() - 1, -1, -1):
+		var item = items[item_idx]
+		
+		var item_button_label : String = "%s (%d,%2.1f)" % [item._name, item._damage, item._accuracy]
+		var item_button : Button = Button.new()
+		item_button.text = item_button_label
+		
+		_items_menu.add_child(item_button)
+		_items_menu.move_child(item_button, 0)
+		
+		var next_button : Button = _items_menu.get_child(1)
+		next_button.focus_neighbor_top = item_button.get_path()
+		item_button.focus_neighbor_bottom = next_button.get_path()
+	
+	# Connect top and bottom buttons.
+	if _items_menu.get_child_count() > 1:
+		var first_item_button : Button = _items_menu.get_child(0)
+		var last_item_button : Button = _items_menu.get_child(_items_menu.get_child_count() - 1)
+		first_item_button.focus_neighbor_top = last_item_button.get_path()
+		last_item_button.focus_neighbor_bottom = first_item_button.get_path()
+
 ########## Node methods. ##########
 
 func _ready() -> void:
