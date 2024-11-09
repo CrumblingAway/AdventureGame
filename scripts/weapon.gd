@@ -9,6 +9,11 @@ class_name Weapon extends Node
 
 @export var _icon : Sprite2D
 
+########## Weapon methods. ##########
+
+func get_action() -> Action:
+	return Action.new()
+
 ########## Node methods. ##########
 
 func _ready() -> void:

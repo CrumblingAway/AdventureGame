@@ -1,10 +1,12 @@
 class_name CombatMenu extends Node
 
+signal do_button_action(action: Action)
+
 @onready var _main_menu : VBoxContainer = $MainMenu
 @onready var _weapons_menu : VBoxContainer = $WeaponsMenu
 @onready var _items_menu : VBoxContainer = $ItemsMenu
 
-var _weapons : Array[Weapon]
+var _button_to_action : Dictionary
 var _focused_button : Button
 
 ########## CombatMenu methods. ##########
@@ -60,6 +62,9 @@ func add_weapons_buttons(weapons: Array[Weapon]) -> void:
 		var next_button : Button = _weapons_menu.get_child(1)
 		next_button.focus_neighbor_top = weapon_button.get_path()
 		weapon_button.focus_neighbor_bottom = next_button.get_path()
+		
+		_button_to_action[weapon_button] = weapon.get_action()
+		weapon_button.pressed.connect(emit_action.bind(weapon.get_action()))
 	
 	# Connect top and bottom buttons.
 	if _weapons_menu.get_child_count() > 1:
@@ -83,6 +88,9 @@ func add_items_buttons(items: Array) -> void:
 		var next_button : Button = _items_menu.get_child(1)
 		next_button.focus_neighbor_top = item_button.get_path()
 		item_button.focus_neighbor_bottom = next_button.get_path()
+		
+		_button_to_action[item_button] = item_button.get_action()
+		item_button.pressed.connect(emit_action.bind(item.get_action()))
 	
 	# Connect top and bottom buttons.
 	if _items_menu.get_child_count() > 1:
@@ -90,6 +98,9 @@ func add_items_buttons(items: Array) -> void:
 		var last_item_button : Button = _items_menu.get_child(_items_menu.get_child_count() - 1)
 		first_item_button.focus_neighbor_top = last_item_button.get_path()
 		last_item_button.focus_neighbor_bottom = first_item_button.get_path()
+
+func emit_action(action: Action) -> void:
+	do_button_action.emit(action)
 
 ########## Node methods. ##########
 

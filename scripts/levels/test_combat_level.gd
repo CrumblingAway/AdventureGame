@@ -64,6 +64,8 @@ func enter(
 	_setup_player_menu()
 	_player_combat_menu.global_position = _player.global_position
 	_player_combat_menu.display_main_menu()
+	
+	_player_combat_menu.do_button_action.connect(_switch_to_target_selection)
 
 func exit() -> void:
 	pass
@@ -109,7 +111,10 @@ func _setup_player_items_menu(items_container: Node) -> void:
 	var items : Array
 	for item in items_container.get_children():
 		items.push_back(item)
-	_player_combat_menu.add_weapons_buttons(items)
+	_player_combat_menu.add_items_buttons(items)
+
+func _switch_to_target_selection(action: Action) -> void:
+	_mode = Mode.TARGET_SELECT
 
 ########## Node2D methods. ##########
 
