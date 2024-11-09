@@ -68,42 +68,23 @@ func exit() -> void:
 	pass
 
 func process_input() -> bool:
-	var is_combat_input : bool = false
+	var is_combat_input : bool = true
 	
 	match _mode:
 		Mode.MENU:
 			if Input.is_action_just_pressed("move_up"):
 				_player_combat_menu.cycle_prev_menu_item()
-				is_combat_input = true
 			elif Input.is_action_just_pressed("move_down"):
 				_player_combat_menu.cycle_next_menu_item()
-				is_combat_input = true
 			elif Input.is_action_just_pressed("action"):
 				_player_combat_menu.press_selected_item()
+			else:
+				is_combat_input = false
 		Mode.TARGET_SELECT:
-			if Input.is_action_just_pressed("move_down"):
-				# Cycle menu option.
-				
-				# Cycle enemy.
-				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
-				_selected_enemy_index = (_selected_enemy_index + 1) % _enemies.size()
-				is_combat_input = true
-			elif Input.is_action_just_pressed("move_up"):
-				# Cycle menu option.
-				
-				# Cycle enemy.
-				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
-				_selected_enemy_index = (_selected_enemy_index - 1) % _enemies.size()
-				is_combat_input = true
-			elif Input.is_action_just_pressed("action"):
-				# Display menu.
-				
-				# Execute menu option.
-				
-				LevelManager.climb_from_combat_level()
-				LevelManager.get_current_level().get_node("CombatSearcher").exit()
-				
-				is_combat_input = true
+			if Input.is_action_just_pressed("cancel"):
+				_mode = Mode.MENU
+			else:
+				is_combat_input = false
 		_:
 			pass
 	return is_combat_input
