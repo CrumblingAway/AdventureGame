@@ -47,6 +47,9 @@ func display_item_menu() -> void:
 	back_button.grab_focus()
 	_focused_button = back_button
 
+func grab_focus() -> void:
+	_focused_button.grab_focus()
+
 func add_weapons_buttons(weapons: Array[Weapon]) -> void:
 	# Connect buttons to top and bottom neighbors.
 	for weapon_idx in range(weapons.size() - 1, -1, -1):

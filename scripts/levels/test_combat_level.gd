@@ -80,8 +80,19 @@ func process_input() -> bool:
 				or Input.is_action_just_pressed("action"):
 				is_combat_input = false
 		Mode.TARGET_SELECT:
-			if Input.is_action_just_pressed("cancel"):
+			if Input.is_action_just_pressed("move_up"):
+				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
+				_selected_enemy_index = (_selected_enemy_index - 1) % _enemies.size()
+			elif Input.is_action_just_pressed("move_down"):
+				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
+				_selected_enemy_index = (_selected_enemy_index + 1) % _enemies.size()
+			elif Input.is_action_just_pressed("action"):
+				pass
+			elif Input.is_action_just_pressed("cancel"):
+				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
 				_mode = Mode.MENU
+				_player_combat_menu.visible = true
+				_player_combat_menu.grab_focus()
 			else:
 				is_combat_input = false
 		_:
@@ -112,6 +123,8 @@ func _setup_player_items_menu(items_container: Node) -> void:
 func _switch_to_target_selection(action: Action) -> void:
 	_mode = Mode.TARGET_SELECT
 	_player_action = action
+	_player_combat_menu.visible = false
+	_selected_enemy_index = 0
 
 ########## Node2D methods. ##########
 
@@ -119,5 +132,6 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	pass
+	if _mode == Mode.TARGET_SELECT:
+		_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 1.0)
 
