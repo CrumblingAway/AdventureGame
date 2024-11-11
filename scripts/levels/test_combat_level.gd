@@ -18,7 +18,7 @@ var _selected_enemy_index : int
 var _mode : Mode
 
 var _combat_manager : CombatManager
-var _player_action
+var _player_action : Action
 
 @onready var _tile_map : TileMap = $TileMap
 
@@ -75,13 +75,9 @@ func process_input() -> bool:
 	
 	match _mode:
 		Mode.MENU:
-			if Input.is_action_just_pressed("move_up"):
-				_player_combat_menu.cycle_prev_menu_item()
-			elif Input.is_action_just_pressed("move_down"):
-				_player_combat_menu.cycle_next_menu_item()
-			elif Input.is_action_just_pressed("action"):
-				_player_combat_menu.press_selected_item()
-			else:
+			if not Input.is_action_just_pressed("move_up")\
+				or Input.is_action_just_pressed("move_down")\
+				or Input.is_action_just_pressed("action"):
 				is_combat_input = false
 		Mode.TARGET_SELECT:
 			if Input.is_action_just_pressed("cancel"):
@@ -115,6 +111,7 @@ func _setup_player_items_menu(items_container: Node) -> void:
 
 func _switch_to_target_selection(action: Action) -> void:
 	_mode = Mode.TARGET_SELECT
+	_player_action = action
 
 ########## Node2D methods. ##########
 
