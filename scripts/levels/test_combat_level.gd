@@ -115,13 +115,13 @@ func _setup_player_menu() -> void:
 	_setup_player_items_menu(player_inventory.get_node("Items"))
 
 func _setup_player_weapons_menu(weapons_container: Node) -> void:
-	var weapons : Array[Weapon]
+	var weapons : Array[Weapon] = []
 	for weapon in weapons_container.get_children():
 		weapons.push_back(weapon as Weapon)
 	_player_combat_menu.add_weapons_buttons(weapons)
 
 func _setup_player_items_menu(items_container: Node) -> void:
-	var items : Array
+	var items : Array = []
 	for item in items_container.get_children():
 		items.push_back(item)
 	_player_combat_menu.add_items_buttons(items)

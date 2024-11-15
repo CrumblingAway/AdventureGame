@@ -9,15 +9,15 @@ var _cursor_mover : GridMovement2D
 
 ########## CombatSearcher methods. ##########
 
-func start_at(position: Vector2) -> void:
-	_cursor.global_position = position
+func start_at(search_position: Vector2) -> void:
+	_cursor.global_position = search_position
 	set_cursor_visible(true)
 
 func exit() -> void:
 	set_cursor_visible(false)
 
-func set_cursor_visible(is_visible: bool) -> void:
-	_cursor.visible = is_visible
+func set_cursor_visible(is_cursor_visible: bool) -> void:
+	_cursor.visible = is_cursor_visible
 
 func move_cursor(direction: Vector2i) -> void:
 	_cursor_mover.move(direction)
@@ -28,8 +28,8 @@ func start_combat() -> bool:
 		if enemy.global_position == _cursor.global_position:
 			enemy_group = enemy._group
 	
-	var enemies : Array[Enemy]
-	var distances : Array[int]
+	var enemies : Array[Enemy] = []
+	var distances : Array[int] = []
 	for enemy in _level._enemies:
 		if enemy._group == enemy_group:
 			enemies.push_back(enemy)
