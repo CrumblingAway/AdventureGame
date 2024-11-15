@@ -12,7 +12,10 @@ class_name Weapon extends Node
 ########## Weapon methods. ##########
 
 func get_action() -> Action:
-	return Action.new()
+	var action : Action = Action.new()
+	action._damage = _damage
+	action._accuracy = _accuracy
+	return action
 
 ########## Node methods. ##########
 

@@ -2,6 +2,8 @@ class_name Player extends Node2D
 
 @onready var _grid_movement_2d : GridMovement2D = $GridMovement2D
 
+@export var _attack_speed : int
+
 ########## Node methods. ##########
 
 func _ready() -> void:

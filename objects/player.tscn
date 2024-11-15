@@ -8,6 +8,7 @@
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_rlt8r")
+_attack_speed = 10
 
 [node name="GridMovement2D" parent="." node_paths=PackedStringArray("_mover") instance=ExtResource("1_h8lq4")]
 _mover = NodePath("..")

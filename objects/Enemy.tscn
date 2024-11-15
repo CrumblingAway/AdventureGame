@@ -13,6 +13,7 @@ shader_parameter/enabled = 0.0
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_a4t8w")
+_attack_speed = 5
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_o14tc")]
 max_health_points = 50

@@ -133,6 +133,14 @@ func _switch_to_target_selection(action: Action) -> void:
 	_selected_enemy_index = 0
 
 func _start_attack_sequence_with_player_action(target_enemy: Enemy, action: Action) -> void:
+	action._speed = _player._attack_speed
+	var action_sequence : Array = [[action, target_enemy]]
+	for enemy in _enemies:
+		action_sequence.push_back(enemy.get_action())
+	action_sequence.sort_custom(func(a, b): return a._speed < b._speed)
+	_perform_actions_sequentially(action_sequence)
+
+func _perform_actions_sequentially(action_sequence: Array) -> void:
 	pass
 
 ########## Node2D methods. ##########
