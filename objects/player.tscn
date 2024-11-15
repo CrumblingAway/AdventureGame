@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://dn4kxyo081iav"]
+[gd_scene load_steps=7 format=3 uid="uid://dn4kxyo081iav"]
 
 [ext_resource type="PackedScene" uid="uid://lrp71qneqny5" path="res://components/GridMovement2D.tscn" id="1_h8lq4"]
 [ext_resource type="Texture2D" uid="uid://dyv0xxl5f6sl3" path="res://assets/test_player.png" id="1_heaiw"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_rlt8r"]
+[ext_resource type="PackedScene" uid="uid://chr8ddtkkf8yy" path="res://components/HealthComponent.tscn" id="2_qm7hu"]
 [ext_resource type="PackedScene" uid="uid://cy5xi4wyqjrot" path="res://objects/TestGun.tscn" id="4_lmqb1"]
 [ext_resource type="PackedScene" uid="uid://cduvblubula1a" path="res://objects/TestKnife.tscn" id="5_t4gl8"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_rlt8r")
 _attack_speed = 10
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_qm7hu")]
+max_health_points = 100
+health_points = 100
 
 [node name="GridMovement2D" parent="." node_paths=PackedStringArray("_mover") instance=ExtResource("1_h8lq4")]
 _mover = NodePath("..")

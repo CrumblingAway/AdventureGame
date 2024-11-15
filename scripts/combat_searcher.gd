@@ -30,12 +30,16 @@ func start_combat() -> bool:
 	
 	var enemies : Array[Enemy] = []
 	var distances : Array[int] = []
-	for enemy in _level._enemies:
-		if enemy._group == enemy_group:
+	var enemies_idx : int = _level._enemies.size() - 1
+	while enemies_idx >= 0:
+		if _level._enemies[enemies_idx]._group == enemy_group:
+			var enemy : Enemy = _level._enemies.pop_at(enemies_idx)
 			enemies.push_back(enemy)
 			distances.push_back(int((_level._player.global_position - enemy.global_position).abs().dot(Vector2.ONE) / _level._grid._tile_map.tile_set.tile_size.x))
+		enemies_idx -= 1
 	
 	if enemies:
+		set_cursor_visible(false)
 		enter_combat_level.emit(enemies, distances)
 		return true
 	
