@@ -20,6 +20,8 @@ var _mode : Mode
 var _combat_manager : CombatManager
 var _player_action : Action
 
+var _scheduled_actions : Array
+
 @onready var _tile_map : TileMap = $TileMap
 
 ########## Combat level methods. ##########
@@ -87,7 +89,11 @@ func process_input() -> bool:
 				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
 				_selected_enemy_index = (_selected_enemy_index + 1) % _enemies.size()
 			elif Input.is_action_just_pressed("action"):
-				pass
+				_start_attack_sequence_with_player_action(_enemies[_selected_enemy_index], _player_action)
+				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
+				_player_combat_menu.visible = true
+				_player_combat_menu.display_main_menu()
+				_mode = Mode.MENU
 			elif Input.is_action_just_pressed("cancel"):
 				_enemies[_selected_enemy_index].get_node("Sprite2D").material.set_shader_parameter("enabled", 0.0)
 				_mode = Mode.MENU
@@ -125,6 +131,9 @@ func _switch_to_target_selection(action: Action) -> void:
 	_player_action = action
 	_player_combat_menu.visible = false
 	_selected_enemy_index = 0
+
+func _start_attack_sequence_with_player_action(target_enemy: Enemy, action: Action) -> void:
+	pass
 
 ########## Node2D methods. ##########
 
